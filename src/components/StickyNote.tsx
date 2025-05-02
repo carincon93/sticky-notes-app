@@ -4,7 +4,7 @@ import {
   useSensor,
   useSensors,
   PointerSensor,
-  TouchSensor
+  TouchSensor,
 } from "@dnd-kit/core";
 import {
   Dialog,
@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
@@ -52,10 +53,16 @@ type Item = {
 type DraggableItemProps = {
   id: string;
   item: Item;
+  activeItem: Item | undefined;
   setItemSelected: React.Dispatch<React.SetStateAction<Item | null>>;
 };
 
-function DraggableItem({ id, item, setItemSelected }: DraggableItemProps) {
+function DraggableItem({
+  id,
+  item,
+  activeItem,
+  setItemSelected,
+}: DraggableItemProps) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
@@ -69,7 +76,6 @@ function DraggableItem({ id, item, setItemSelected }: DraggableItemProps) {
     left: item.x,
     top: item.y,
     zIndex: item.zIndex,
-    cursor: "grab",
     display: "flex",
     fontWeight: "bold",
   };
@@ -79,7 +85,9 @@ function DraggableItem({ id, item, setItemSelected }: DraggableItemProps) {
       ref={setNodeRef}
       {...attributes}
       {...listeners}
-      className={`bg-yellow-300 max-w-56 hover:opacity-80 transition-opacity w-full p-6 shadow-lg`}
+      className={`bg-yellow-300 max-w-56 hover:opacity-80 transition-opacity w-full p-6 shadow-lg ${
+        id == activeItem?.id ? "cursor-grabbing" : "hover:cursor-grab"
+      }`}
       onDoubleClick={() => setItemSelected(item)}
       style={style}
     >
@@ -96,6 +104,7 @@ export const StickyNote = ({}: StickyNoteProps) => {
   const [items, setItems] = useState<Item[]>([]);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [itemSelected, setItemSelected] = useState<Item | null>(null);
+  const [activeItem, setActiveItem] = useState<Item | undefined>(undefined);
   const [data, setData] = useState<{ description: string; color: string }>({
     description: "",
     color: "#ffdf20",
@@ -116,7 +125,6 @@ export const StickyNote = ({}: StickyNoteProps) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     setData({ description: "", color: "#ffdf20" });
     setItemSelected(null);
-    setData({ description: "", color: "#ffdf20" });
     setOpenDialog(false);
   }, [items]);
 
@@ -154,6 +162,8 @@ export const StickyNote = ({}: StickyNoteProps) => {
   const handleDragStart = (event: DragStartEvent): void => {
     const { active } = event;
 
+    setActiveItem(items.find((item) => item.id === active.id));
+
     setItems((prevItems: Item[]) =>
       prevItems.map((item: Item) =>
         item.id === active.id
@@ -171,6 +181,8 @@ export const StickyNote = ({}: StickyNoteProps) => {
 
   const handleDragEnd = (event: DragEndEvent): void => {
     const { delta, active } = event;
+
+    setActiveItem(undefined);
 
     setItems((prevItems: Item[]) =>
       prevItems.map((item: Item) =>
@@ -249,7 +261,10 @@ export const StickyNote = ({}: StickyNoteProps) => {
           </form>
           <DialogFooter>
             {itemSelected && (
-              <Button variant="outline" onClick={() => removeItem(itemSelected.id)}>
+              <Button
+                variant="outline"
+                onClick={() => removeItem(itemSelected.id)}
+              >
                 <Trash color="red" />
               </Button>
             )}
@@ -262,7 +277,6 @@ export const StickyNote = ({}: StickyNoteProps) => {
 
       <DndContext
         sensors={sensors}
-        
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
       >
@@ -270,6 +284,7 @@ export const StickyNote = ({}: StickyNoteProps) => {
           <DraggableItem
             key={item.id}
             id={item.id}
+            activeItem={activeItem}
             setItemSelected={setItemSelected}
             item={item}
           />
