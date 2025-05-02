@@ -4,6 +4,7 @@ import {
   useSensor,
   useSensors,
   PointerSensor,
+  TouchSensor
 } from "@dnd-kit/core";
 import {
   Dialog,
@@ -100,7 +101,7 @@ export const StickyNote = ({}: StickyNoteProps) => {
     color: "#ffdf20",
   });
 
-  const sensors = useSensors(useSensor(PointerSensor));
+  const sensors = useSensors(useSensor(PointerSensor), useSensor(TouchSensor));
 
   // Cargar objetos desde localStorage al montar
   useEffect(() => {
@@ -150,12 +151,6 @@ export const StickyNote = ({}: StickyNoteProps) => {
     setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  useEffect(() => {
-    if (!openDialog) {
-     
-    }
-  }, [openDialog]);
-
   const handleDragStart = (event: DragStartEvent): void => {
     const { active } = event;
 
@@ -176,7 +171,6 @@ export const StickyNote = ({}: StickyNoteProps) => {
 
   const handleDragEnd = (event: DragEndEvent): void => {
     const { delta, active } = event;
-    console.log("DragEnd");
 
     setItems((prevItems: Item[]) =>
       prevItems.map((item: Item) =>
@@ -268,6 +262,7 @@ export const StickyNote = ({}: StickyNoteProps) => {
 
       <DndContext
         sensors={sensors}
+        
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
       >
