@@ -1,25 +1,29 @@
 ---
-import '../styles/global.css';
+import "@/styles/global.css";
+import background from "@/assets/background.svg";
 // Component Imports
-import Button from '../components/Button.astro';
+import { StickyNote } from "@/components/StickyNote";
+import Main from "@/layouts/main.astro";
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+<Main title="Sticky Notes">
+  <img id="background" src={background.src} alt="" fetchpriority="high" />
+  <div class="grid place-items-center h-screen content-center">
+    <StickyNote client:load />
+  </div>
+</Main>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
-</html>
+<style>
+  #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(100px);
+  }
+</style>
