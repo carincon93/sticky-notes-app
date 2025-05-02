@@ -79,7 +79,7 @@ function DraggableItem({ id, item, setItemSelected }: DraggableItemProps) {
       ref={setNodeRef}
       {...attributes}
       {...listeners}
-      className={`bg-yellow-300 max-w-56 hover:opacity-80 transition-opacity w-full p-6 shadow-lg select-none`}
+      className={`bg-yellow-300 max-w-56 hover:opacity-80 transition-opacity w-full p-6 shadow-lg`}
       onDoubleClick={() => setItemSelected(item)}
       style={style}
     >
