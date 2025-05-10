@@ -223,7 +223,7 @@ export const StickyNote = ({}: StickyNoteProps) => {
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="description" className="text-left text-[12px]">
-                  Description
+                  Text
                 </Label>
                 <div className="col-span-3">
                   <Textarea
@@ -291,7 +291,7 @@ export const StickyNote = ({}: StickyNoteProps) => {
           <div
             key={item.id}
             className={`bg-yellow-300 max-w-56 hover:opacity-80 transition-opacity w-full p-6 shadow-lg`}
-            onDoubleClick={() => setItemSelected(item)}
+            onClick={() => setItemSelected(item)}
           >
             <p className="whitespace-pre-line leading-4 text-xs">
               {item.description}
