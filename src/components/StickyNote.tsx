@@ -199,14 +199,7 @@ export const StickyNote = ({}: StickyNoteProps) => {
   };
 
   return (
-    <div
-      style={{
-        width: "100vw",
-        position: "relative",
-
-        backgroundColor: "transparent",
-      }}
-    >
+    <div className="w-screen relative bg-transparent">
       <div className="fixed bottom-4 flex items-center justify-center w-full">
         <Button
           variant="outline"
@@ -272,24 +265,40 @@ export const StickyNote = ({}: StickyNoteProps) => {
               {!itemSelected ? "Add" : "Modify"}
             </Button>
           </DialogFooter>
+          |
         </DialogContent>
       </Dialog>
+      <div className="hidden md:block">
+        <DndContext
+          sensors={sensors}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+        >
+          {items.map((item) => (
+            <DraggableItem
+              key={item.id}
+              id={item.id}
+              activeItem={activeItem}
+              setItemSelected={setItemSelected}
+              item={item}
+            />
+          ))}
+        </DndContext>
+      </div>
 
-      <DndContext
-        sensors={sensors}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-      >
+      <div className="md:hidden">
         {items.map((item) => (
-          <DraggableItem
+          <div
             key={item.id}
-            id={item.id}
-            activeItem={activeItem}
-            setItemSelected={setItemSelected}
-            item={item}
-          />
+            className={`bg-yellow-300 max-w-56 hover:opacity-80 transition-opacity w-full p-6 shadow-lg`}
+            onDoubleClick={() => setItemSelected(item)}
+          >
+            <p className="whitespace-pre-line leading-4 text-xs">
+              {item.description}
+            </p>
+          </div>
         ))}
-      </DndContext>
+      </div>
     </div>
   );
 };

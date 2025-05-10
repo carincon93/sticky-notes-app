@@ -34,6 +34,8 @@
     "tailwindcss": "^4.1.3"
   },
   "devDependencies": {
-    "tw-animate-css": "^1.2.8"
+    "@vite-pwa/astro": "^1.1.0",
+    "tw-animate-css": "^1.2.8",
+    "workbox-window": "^7.3.0"
   }
 }
