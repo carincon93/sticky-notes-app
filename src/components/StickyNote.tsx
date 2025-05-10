@@ -286,7 +286,7 @@ export const StickyNote = ({}: StickyNoteProps) => {
         </DndContext>
       </div>
 
-      <div className="md:hidden">
+      <div className="md:hidden space-y-2 p-4">
         {items.map((item) => (
           <div
             key={item.id}

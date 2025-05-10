@@ -11,7 +11,7 @@ import Main from "@/layouts/main.astro";
 
 <Main title="Sticky Notes">
   <img id="background" src={background.src} alt="" fetchpriority="high" />
-  <div class="grid place-items-center h-screen content-center">
+  <div class="grid md:place-items-center h-screen md:content-center">
     <StickyNote client:load />
   </div>
 </Main>
