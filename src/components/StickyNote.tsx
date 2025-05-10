@@ -138,6 +138,13 @@ export const StickyNote = ({}: StickyNoteProps) => {
     setOpenDialog(true);
   }, [itemSelected]);
 
+  useEffect(() => {
+    if (!openDialog) {
+      setData({ description: "", color: "#ffdf20" });
+      setItemSelected(null);
+    }
+  }, [openDialog]);
+
   const addItem = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -265,7 +272,6 @@ export const StickyNote = ({}: StickyNoteProps) => {
               {!itemSelected ? "Add" : "Modify"}
             </Button>
           </DialogFooter>
-          |
         </DialogContent>
       </Dialog>
       <div className="hidden md:block">
