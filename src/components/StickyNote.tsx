@@ -296,7 +296,7 @@ export const StickyNote = ({}: StickyNoteProps) => {
         {items.map((item) => (
           <div
             key={item.id}
-            className={`max-w-56 hover:opacity-80 transition-opacity w-full p-6 shadow-lg`}
+            className={`md:max-w-56 hover:opacity-80 transition-opacity w-full p-6 shadow-lg`}
             onClick={() => setItemSelected(item)}
             style={{
               backgroundColor: item.color,
