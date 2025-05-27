@@ -30,7 +30,9 @@ export default defineConfig({
       },
       workbox: {
         navigateFallback: "/sticky-notes-app/index.html",
-        globPatterns: ["**/*.{css,js,html,svg,riv,png,webp,ico,txt}"],
+        globPatterns: [
+          "**/*.{css,js,html,svg,riv,png,webp,ico,txt,ttf,woff,woff2,eot}",
+        ],
       },
       devOptions: {
         enabled: true,
