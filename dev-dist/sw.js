@@ -79,7 +79,7 @@ define(['./workbox-86c9b217'], (function (workbox) { 'use strict';
    */
   workbox.precacheAndRoute([{
     "url": "/sticky-notes-app/index.html",
-    "revision": "0.fbsuappp06g"
+    "revision": "0.eai2s79u99"
   }], {
     "directoryIndex": "index.html"
   });
