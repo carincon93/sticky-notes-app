@@ -85,7 +85,7 @@ function DraggableItem({
       ref={setNodeRef}
       {...attributes}
       {...listeners}
-      className={`bg-yellow-300 hover:opacity-80 transition-opacity p-6 shadow-lg ${
+      className={`bg-yellow-300 hover:opacity-80 transition-opacity p-6 shadow-lg min-w-[400px] ${
         id == activeItem?.id ? "cursor-grabbing" : "hover:cursor-grab"
       }`}
       onDoubleClick={() => setItemSelected(item)}
