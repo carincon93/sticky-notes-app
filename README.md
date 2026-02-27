@@ -1,6 +1,7 @@
 # Sticky Notes Board
 
-<img width="2065" height="1233" alt="image" src="https://github.com/user-attachments/assets/d008de06-1efb-4b6b-8e02-c64af01a7e8f" />
+![Screenshot 2026-02-26 212121](https://github.com/user-attachments/assets/17d3f42a-e6d4-42be-95fa-0f880c31ee47)
+
 
 URL: https://carincon93.github.io/sticky-notes-app/
 
