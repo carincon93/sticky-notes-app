@@ -1,13 +1,32 @@
-# Astro with Tailwind
+# Sticky Notes Board
 
-```sh
-pnpm create astro@latest -- --template with-tailwindcss
-```
+<img width="2065" height="1233" alt="image" src="https://github.com/user-attachments/assets/d008de06-1efb-4b6b-8e02-c64af01a7e8f" />
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/with-tailwindcss/devcontainer.json)
+URL: https://carincon93.github.io/sticky-notes-app/
 
-Astro comes with [Tailwind](https://tailwindcss.com) support out of the box. This example showcases how to style your Astro project with Tailwind.
+A minimal, fast, and persistent sticky notes board built with React, AstroJS, TailwindCSS, and dnd-kit.
 
-For complete setup instructions, please see our [Tailwind Integration Guide](https://docs.astro.build/en/guides/integrations-guide/tailwind).
+Create notes, drag them freely around the board, and keep everything saved automatically using localStorage.
+
+---
+
+## Features
+
+- Create, edit, and delete sticky notes  
+- Drag and drop positioning with smooth interactions  
+- Persistent storage using localStorage  
+- Fast performance powered by Astro + React  
+- Clean UI styled with TailwindCSS  
+- Responsive design  
+
+---
+
+## Tech Stack
+
+- React – UI components and state management  
+- AstroJS – Static site framework for performance  
+- TailwindCSS – Utility-first CSS framework  
+- dnd-kit – Modern drag-and-drop toolkit for React  
+- localStorage API – Client-side persistence  
+
+
